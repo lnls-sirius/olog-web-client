@@ -17,11 +17,11 @@ var serviceurl = window.location.protocol + "//" + window.location.host + "/Olog
 
 // For all the dates shown in client
 // Format docs can be found at http://momentjs.com/docs/#/displaying/format/
-var dateFormat = "M/D/YY, h:mm A";
+var dateFormat = "DD/MM/YY, hh:mm A";
 
 // jQuery datepicker plugin has its onw date format so it is defined separately.
 // Format switches can be found at http://api.jqueryui.com/datepicker/
-var datePickerDateFormat = "mm/dd/yy";
+var datePickerDateFormat = "dd/mm/yy";
 
 // jQuery timepicker plugin has its onw date format so it is defined separately.
 // Format switches can be found at http://trentrichardson.com/examples/timepicker/
@@ -30,7 +30,7 @@ var datePickerTimeFormat = "hh:mm";
 // Date from the datepicker is put in the search input but need to be parsed
 // to build a REST service query. Format documentation can be found at
 // http://momentjs.com/docs/#/parsing/
-var datePickerDateFormatMometParseString = "MM/DD/YYYY hh:mm";
+var datePickerDateFormatMometParseString = "DD/MM/YYYY hh:mm";
 
 // Start of the week in the jQuery datepicker: 0: Sunday, 1: Monday, ...
 var datePickerFirstName = 1;
@@ -162,7 +162,7 @@ var searchInputElements = {
 var inReadOnly = false;
 
 // Place delete button into Log details and allow deleting if this property is set to true
-var allowDeletingLogs = false;
+var allowDeletingLogs = true;
 
 //If tooltips explaining certain parts of the application should be shown
 var showTooltips = true;

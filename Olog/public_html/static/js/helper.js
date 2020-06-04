@@ -239,7 +239,7 @@ function closeFilterGroup(groupContainer) {
 
 	// Style attribute is added when filter items are being filtered
 	groupContainer.find('li:gt(0)').removeAttr("style");
-	groupContainer.find('li:gt(0) .multilist_clicked').parent().removeClass('display_none');
+	//groupContainer.find('li:gt(0) .multilist_clicked').parent().removeClass('display_none');
 
 	var arrow = groupContainer.find('li i.toggle-from');
 	toggleChevron(arrow, false);
@@ -291,8 +291,7 @@ function toggleChevron(element, openGroup) {
  * @param {type} dataToBeSaved data to be saved into a cookie
  */
 function saveOlogSettingsData(dataToBeSaved) {
-	$.cookie(settingsCookieName, JSON.stringify(dataToBeSaved));
-}
+	$.cookie(settingsCookieName, JSON.stringify(dataToBeSaved), { secure : 'secure' }); }
 
 /**
  * Use the browser's built-in functionality to quickly and safely escape

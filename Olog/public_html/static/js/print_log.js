@@ -6,7 +6,7 @@
  */
 
 $(document).ready(function(){
-	var urlObject = $.url();
+	var urlObject = $['url']();
     var id = urlObject.param("id");
 
     //If the user is viewing the log, no print popup

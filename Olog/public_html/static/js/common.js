@@ -45,7 +45,7 @@ $(document).ready(function(){
 		return $(a).text().match("^" + m[3] + "$");
 	};
 
-	var urlObject = $.url();
+	var urlObject = $['url']();
 
 	// Get reason from url
 	var reason = urlObject.param("reason");

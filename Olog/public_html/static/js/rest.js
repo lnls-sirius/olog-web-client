@@ -855,7 +855,7 @@ function getTemplate(id){
 	var template = "";
 
 	if(id in templateCache) {
-		return templateCache[id];
+		template = templateCache[id];
 
 	} else {
 		$.ajaxSetup({async:false});
@@ -865,8 +865,8 @@ function getTemplate(id){
 			templateCache[id] = template;
 		});
 
-		return template;
 	}
+	return template.replace("!!!","");
 }
 
 /*

@@ -13,14 +13,14 @@ var max_search = 10;
  * @param elem The element to add to the list of shortcuts
  * @param isTimestamp If it is a timestamp, not a log object
  */
-function addToShortcuts(list, elem){
+function addToShortcuts(list, elem, isUndefined){
     var logid = "";
     var createdAt = "";
     var namee = "" ;
     var template = "";
     var shortcuttype = "timestamp";
 
-    if(isTimestamp === undefined){
+    if(typeof isTimestamp === 'undefined'){
         isTimestamp = false;
     }
     if(isTimestamp){
@@ -140,13 +140,21 @@ function setShortcutBtnEvents(){
  * @param days Number of days to search between
  */
 function findInDateRange(elem, days){
-    var dat = new Date(elem.text());
+   
+    var dateParts = elem.text().split("/");
+    dateParts[0] = dateParts[0].substring(23);
+    var hours = dateParts[2].substring(10,12) == "PM" ? 12 + Number(dateParts[2].substring(4,6)) : Number(dateParts[2].substring(4,6));
+    dateParts.push(hours.toString());
+    dateParts.push(dateParts[2].substring(7,9));
+    dateParts[2] = "20" + dateParts[2].substring(0,2); //This won't work in 2100
+
+    var dat = new Date(+dateParts[2], +dateParts[1] - 1, +dateParts[0], +dateParts[3], +dateParts[4], 0, 0);
     var futureDate = new Date(dat.setDate(dat.getDate() + days));
     var prevDate = new Date(dat.setDate(dat.getDate() - 2*days));
 
     //set to the datepickers
-    $('#datepicker_from').val(moment(prevDate).format('MM/DD/YYYY HH:mm'));
-    $('#datepicker_to').val(moment(futureDate).format('MM/DD/YYYY HH:mm'));
+    $('#datepicker_from').val(moment(prevDate).format('DD/MM/YYYY HH:mm'));
+    $('#datepicker_to').val(moment(futureDate).format('DD/MM/YYYY HH:mm'));
 }
 
 /**
