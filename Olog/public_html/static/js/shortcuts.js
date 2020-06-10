@@ -13,7 +13,7 @@ var max_search = 10;
  * @param elem The element to add to the list of shortcuts
  * @param isTimestamp If it is a timestamp, not a log object
  */
-function addToShortcuts(list, elem, isUndefined){
+function addToShortcuts(list, elem, isTimestamp){
     var logid = "";
     var createdAt = "";
     var namee = "" ;
@@ -42,14 +42,12 @@ function addToShortcuts(list, elem, isUndefined){
         logid: logid,
         shortcuttype: shortcuttype
     });
-
-    list.append(html);
-
     //set readonly elems again
     setReadOnly(inReadOnly);
-
+    
     if(ologSettings.logShortcuts !== undefined){
         if(ologSettings.logShortcuts[logid] === undefined){
+	    list.append(html);
             ologSettings.logShortcuts[logid] = {
                 timestamp: isTimestamp,
                 logId: logid,
@@ -74,7 +72,7 @@ function addToShortcuts(list, elem, isUndefined){
 
 }
 
-/**
+/*
  * Adds the shortcut items to the multilist
  * @param list Multilist to add items to
  */
