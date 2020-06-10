@@ -13,6 +13,11 @@ var max_search = 10;
  * @param elem The element to add to the list of shortcuts
  * @param isTimestamp If it is a timestamp, not a log object
  */
+function blinkBackground($selectedLog){
+setTimeout(function(){ $selectedLog.style.setProperty("background-color", "transparent", "important"); }, 1000);
+$selectedLog.style.setProperty("background-color", "#b3ecff", "important");
+}
+
 function addToShortcuts(list, elem, isTimestamp){
     var logid = "";
     var createdAt = "";
@@ -30,7 +35,7 @@ function addToShortcuts(list, elem, isTimestamp){
         template = getTemplate("template_shortcut");
     }else{
         logid = elem.find('input[name="rawIdVal"]').first().val();
-        createdAt = elem.find('.log_createdat_date').first().text();
+        createdAt = elem.find('.log_start_date').first().text();
         namee = elem.find('.log_header').first().text() ;
         template = getTemplate("template_shortcut");
         shortcuttype = "log";
@@ -55,6 +60,10 @@ function addToShortcuts(list, elem, isTimestamp){
                 name: namee
             };
         }
+	else {
+	$selectedLog = $("span[log_attr='" + logid + "']").parent()[0];
+	blinkBackground($selectedLog);
+	}
     }else{
         ologSettings.logShortcuts = {};
         ologSettings.logShortcuts[logid] = {
@@ -63,6 +72,7 @@ function addToShortcuts(list, elem, isTimestamp){
             createdAt: createdAt,
             name: namee
         };
+	list.append(html);
     }
 
     //save the log shortcut data
