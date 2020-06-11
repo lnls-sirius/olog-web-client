@@ -281,9 +281,11 @@ function addTag(main, tagsArea, val, type, override){
         tagsArea.append(html);
 
         //save option
-        ologSettings.searchInputElements = searchInputElements;
-
-        saveOlogSettingsData(ologSettings);
+	if(type != "from" && type != "to")
+	{
+            ologSettings.searchInputElements = searchInputElements;
+            saveOlogSettingsData(ologSettings);
+	}
 
         setTagClickEvents(main);
 

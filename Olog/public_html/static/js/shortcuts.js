@@ -35,7 +35,7 @@ function addToShortcuts(list, elem, isTimestamp){
         template = getTemplate("template_shortcut");
     }else{
         logid = elem.find('input[name="rawIdVal"]').first().val();
-        createdAt = elem.find('.log_start_date').first().text();
+        createdAt = elem.find('.log_createdat_date').first().text();
         namee = elem.find('.log_header').first().text() ;
         template = getTemplate("template_shortcut");
         shortcuttype = "log";
@@ -150,13 +150,15 @@ function setShortcutBtnEvents(){
 function findInDateRange(elem, days){
    
     var dateParts = elem.text().split("/");
-    dateParts[0] = dateParts[0].substring(23);
-    var hours = dateParts[2].substring(10,12) == "PM" ? 12 + Number(dateParts[2].substring(4,6)) : Number(dateParts[2].substring(4,6));
+    dateParts[0] = dateParts[0].substring(dateParts[0].lastIndexOf("\t")+1);
+    var spaceLocation = dateParts[2].indexOf(" ");
+    var hours = dateParts[2].substring(spaceLocation,spaceLocation+2) == "PM" ? 12 + Number(dateParts[2].substring(4,6)) : Number(dateParts[2].substring(4,6));
     dateParts.push(hours.toString());
-    dateParts.push(dateParts[2].substring(7,9));
-    dateParts[2] = "20" + dateParts[2].substring(0,2); //This won't work in 2100
-
-    var dat = new Date(+dateParts[2], +dateParts[1] - 1, +dateParts[0], +dateParts[3], +dateParts[4], 0, 0);
+    dateParts.push(dateParts[2].substring(spaceLocation+4,spaceLocation+6));
+    var year = dateParts[2].substring(0,spaceLocation);
+    year = year.length > 3 ? year : ("20" + year).replace(/\D/g,''); 
+    
+    var dat = new Date(+year, +dateParts[1] - 1, +dateParts[0], +dateParts[3], +dateParts[4], 0, 0);
     var futureDate = new Date(dat.setDate(dat.getDate() + days));
     var prevDate = new Date(dat.setDate(dat.getDate() - 2*days));
 
