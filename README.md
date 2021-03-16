@@ -1,4 +1,4 @@
-#Olog
+# Olog
 Olog is a lightweight web client for [olog-service](https://github.com/Olog/olog-service).
 
 ## Technologies and plugins used
