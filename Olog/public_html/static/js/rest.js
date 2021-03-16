@@ -630,7 +630,7 @@ function prepareParentAndChildren(i, children, prepend, logOwners) {
 
 			// Create custom attribute thumbnail object
 			newItem.attachments.push(
-				{imageUrl: serviceurl + "attachments/" + item.id + "/" + attachment.fileName + ":thumbnail"}
+				{imageUrl: serviceurl + "attachments/" + item.id + "/" + encodeURIComponent(attachment.fileName) + ":thumbnail"}
 			);
 		});
 	}
@@ -794,7 +794,7 @@ function repeatAttachments(source_id, target_id, data, logId){
 
 		// Create customized Attachment object
 		var newItem = {
-			imageUrl: serviceurl + "attachments/" + logId + "/" + item.fileName,
+			imageUrl: serviceurl + "attachments/" + logId + "/" + encodeURIComponent(item.fileName),
 			fileName: item.fileName,
 			imageWidth: containerWidth,
 			imageHeight: containerWidth

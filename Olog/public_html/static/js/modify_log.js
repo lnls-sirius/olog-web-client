@@ -297,8 +297,8 @@ function fillInForm(log) {
 
 		$('#list_existing_attachments').html("");
 		$.each(log.attachments, function(index, file){
-			var img = serviceurl + 'attachments/' + log.id + '/' + file.fileName + ':thumbnail';
-			var file_url = serviceurl + 'attachments/' + log.id + '/' + file.fileName;
+			var img = serviceurl + 'attachments/' + log.id + '/' + encodeURIComponent(file.fileName) + ':thumbnail';
+			var file_url = serviceurl + 'attachments/' + log.id + '/' + encodeURIComponent(file.fileName);
 
 			var item = {
 				img: img,
